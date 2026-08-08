@@ -1,0 +1,25 @@
+{
+  "name": "my-first-repo",
+  "version": "1.0.0",
+  "description": "Привет! Меня зовут Богдан. Я учусь пользоваться Git и GitHub.\r \"Контакты\".",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bogdanzabotkin2002/my-first-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bogdanzabotkin2002/my-first-repo/issues"
+  },
+  "homepage": "https://github.com/bogdanzabotkin2002/my-first-repo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0"
+  }
+}
