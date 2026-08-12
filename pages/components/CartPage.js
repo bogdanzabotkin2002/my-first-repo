@@ -5,8 +5,8 @@ export class CartPage {
     constructor(page) {
         this.page = page;
         this.cartItems = page.locator('[data-test="inventory-item"]');
-        this.checkoutButton = page.locator('[data-test="checkout"]');
-        this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
+        this.continueShoppingButton = page.locator('//*[@id="continue-shopping"]')
+        this.checkoutButton = page.locator('[data-test="checkout"]');    
     }
 
       async getFirstItemName() {
@@ -15,6 +15,6 @@ export class CartPage {
 
     async goToCheckout() {
         await this.checkoutButton.click();
-  }
+    }
 
 }
