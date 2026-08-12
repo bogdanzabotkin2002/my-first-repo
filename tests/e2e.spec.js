@@ -7,39 +7,41 @@ import { CheckStepTwo } from '../pages/components/CheckoutStepTwo';
 import { CompletePage } from '../pages/components/CheckoutCompletePage';
 
 test('login -> finish test', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const inventoryPage = new InventoryPage(page);
-    const cartPage = new CartPage(page);
-    const checkstepOne = new CheckStepOne(page);
-    const checkstepTwo = new CheckStepTwo(page);
-    const completePage = new CompletePage(page);
+    try {
+        const loginPage = new LoginPage(page);
+        const inventoryPage = new InventoryPage(page);
+        const cartPage = new CartPage(page);
+        const checkstepOne = new CheckStepOne(page);
+        const checkstepTwo = new CheckStepTwo(page);
+        const completePage = new CompletePage(page);
 
-    await loginPage.open();
+        await loginPage.open();
 
-    await loginPage.logIn('standard_user', 'secret_sauce');
-    
-    const title = await inventoryPage.getPageTitle();
-    expect(title).toBe('Products');
+        await loginPage.logIn('standard_user', 'secret_sauce');
+        
+        const title = await inventoryPage.getPageTitle();
+        expect(title).toBe('Products');
 
-    await inventoryPage.sortItems('hilo');
+        await inventoryPage.sortItems('hilo');
 
-    await inventoryPage.inventoryItems.first().locator('//button[text()="Add to cart"]')
-        .click();
-    const firstItemName = await inventoryPage.inventoryItems.first()
-        .locator('[data-test="inventory-item-name"]').textContent();
-    await inventoryPage.openCart();
-    expect(firstItemName).toBe(await cartPage.getFirstItemName());
+        await inventoryPage.inventoryItems.first().locator('//button[text()="Add to cart"]')
+            .click();
+        const firstItemName = await inventoryPage.inventoryItems.first()
+            .locator('[data-test="inventory-item-name"]').textContent();
+        await inventoryPage.openCart();
+        expect(firstItemName).toBe(await cartPage.getFirstItemName());
 
-    await cartPage.goToCheckout();
-    await checkstepOne.fillUserInfo('Test', '12345', '222720');
-    expect(await checkstepTwo.title.textContent()).toBe('Checkout: Overview');
+        await cartPage.goToCheckout();
+        await checkstepOne.fillUserInfo('Test', '12345', '222720');
+        expect(await checkstepTwo.title.textContent()).toBe('Checkout: Overview');
 
-    await checkstepTwo.finish();
-    const successMessage = await completePage.getMessage();
-    expect(successMessage).toBe('Thank you for your order!');
-
-
-
+        await checkstepTwo.finish();
+        const successMessage = await completePage.getMessage();
+        expect(successMessage).toBe('Thank you for your order!');
+    } catch (error){
+        await page.screenshot({ path: 'test-failed.png', fullPage: true});
+        throw error;
+    }
 })
 
 
