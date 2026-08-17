@@ -10,7 +10,7 @@ export class CartPage {
     }
 
       async getFirstItemName() {
-        return await this.cartItems.first().locator('[data-test="inventory-item-name"]').textContent();
+        return this.cartItems.first().locator('[data-test="inventory-item-name"]').textContent();
     }
 
     async goToCheckout() {
