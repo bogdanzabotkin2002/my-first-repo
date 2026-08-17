@@ -24,10 +24,7 @@ test('login -> finish test', async ({ page }) => {
 
     await inventoryPage.sortItems('hilo');
 
-    await inventoryPage.inventoryItems.first()
-    await addButton.click();
-    const firstItemName = await inventoryPage.inventoryItems.first()
-        .locator('[data-test="inventory-item-name"]').textContent();
+    const firstItemName = await inventoryPage.addFirstItemToCart();
     await inventoryPage.openCart();
     expect(firstItemName).toBe(await cartPage.getFirstItemName());
 

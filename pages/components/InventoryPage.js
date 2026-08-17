@@ -6,8 +6,9 @@ export class InventoryPage {
         this.page = page;
         this.buttonBurgerMenu = page.locator('#react-burger-menu-btn');
         this.cartIcon = page.locator('//*[@id="shopping_cart_container"]')
-        this.addButton = page.locator('//button[text()="Add to cart"]')
+        this.addButtonSelector = 'button:has-text("Add to cart")';
         this.title = page.locator('//*[@id="header_container"]/div[2]/span');
+        this.inventoryNameSelector = '[data-test="inventory-item-name"]';
         this.dropdown = page.locator('[data-test="product-sort-container"]');
         this.inventoryItems = page.locator('[data-test="inventory-item"]');
     }
@@ -28,5 +29,13 @@ export class InventoryPage {
     async addItemToCart(itemName) {
         const itemRow = this.inventoryItems.filter({ hasText: itemName });
         await itemRow.locator('button').click();
+    }
+
+    async addFirstItemToCart() {
+        
+        const name = await this.inventoryItems.first().locator(this.inventoryNameSelector).textContent();
+        await this.inventoryItems.first().locator(this.addButtonSelector).click();
+        
+        return name;
     }
 }
