@@ -6,7 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "tests:ui": "npx playwright test e2e.spec.js example.spec.js", 
-    "tests:api": "npx playwright test epi.spec.js", 
+    "tests:api": "npx playwright test api.spec.js", 
     "tests:all": "npx playwright test" 
   },
   "repository": {
