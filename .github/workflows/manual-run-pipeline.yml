@@ -13,7 +13,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20' # Рекомендуется использовать стабильную 20 или lts/*
+        node-version: '24' # Рекомендуется использовать стабильную 20 или lts/*
 
     - name: Install dependencies
       run: npm install
