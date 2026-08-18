@@ -42,7 +42,3 @@ steps:
   with: 
     name: playwright-report-api 
     path: playwright-report-api/ retention-days: 7
-
-
-
-
